@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.mechanumdrive.MechanumDrive;
 import org.firstinspires.ftc.teamcode.multipartclaw.MultiPartClaw;
 
 public class OpModePOWERPLAY {
+    public static final String NAME = "PowerPlay 2022-2023";
     public ElapsedTime runtime = new ElapsedTime();
     public HardwareMap hardwareMap;
     public Telemetry telemetry;
@@ -26,7 +27,11 @@ public class OpModePOWERPLAY {
         MECH = new MechanumDrive();
         CLAW = new MultiPartClaw();
         MECH.init();
-        CLAW.init();
+        try {
+            CLAW.init();
+        } catch (IllegalArgumentException e) {
+            CLAW.ACTIVE = false;
+        }
     }
 
 

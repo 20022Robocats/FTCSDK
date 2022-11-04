@@ -14,6 +14,8 @@ public class MultiPartClaw extends IClaw {
     public Claw CLAW;
     public Servo s1;
 
+    public boolean ACTIVE = true;
+
     public MultiPartClaw(){
         super();
     }
@@ -27,43 +29,49 @@ public class MultiPartClaw extends IClaw {
             hardwareMap.get(DcMotor.class, "arm3")
         );
 //        CAM = hardwareMap.get(WebcamName.class, "cam1");
-        s1 = hardwareMap.get(Servo .class, "s1");
+        s1 = hardwareMap.get(Servo.class, "s1");
     }
 
     @Override
     public void run() {
-        if(gamepad.dpad_down) {
-            CLAW.ONE = 0.75;
-            CLAW.TWO = 0.75;
-        } else if(gamepad.dpad_up){
-            CLAW.ONE = -0.75;
-            CLAW.TWO = -0.75;
-        } else {
-            if(gamepad.left_stick_y == 0){
-                // CLAW.ONE = -0.27;
-                // CLAW.TWO = -0.27;
+        if(ACTIVE){
+            if(gamepad.dpad_down) {
+                CLAW.ONE = 0.75;
+                CLAW.TWO = 0.75;
+            } else if(gamepad.dpad_up){
+                CLAW.ONE = -0.75;
+                CLAW.TWO = -0.75;
             } else {
-                CLAW.ONE = (gamepad.left_stick_y * 0.75);
-                CLAW.TWO = (gamepad.left_stick_y * 0.75);
+                if(gamepad.left_stick_y == 0){
+                    // CLAW.ONE = -0.27;
+                    // CLAW.TWO = -0.27;
+                } else {
+                    CLAW.ONE = (gamepad.left_stick_y * 0.75);
+                    CLAW.TWO = (gamepad.left_stick_y * 0.75);
+                }
+                CLAW.THREE= -gamepad.right_stick_y * 0.75;
+                if(gamepad.left_trigger!=0){
+                    s1.setPosition(0);
+                } else if(gamepad.right_trigger!=0){
+                    s1.setPosition(1);
+                }
             }
-            CLAW.THREE= -gamepad.right_stick_y * 0.75;
-            if(gamepad.left_trigger!=0){
-                s1.setPosition(0);
-            } else if(gamepad.right_trigger!=0){
-                s1.setPosition(1);
-            }
+            CLAW.run();
         }
-        CLAW.run();
     }
 
     @Override
     public String telemetry() {
-        return String.format(
-                "   > Bottom1: %.1f\n   > Bottom2: %.1f\n   > Middle: %.1f\n   > UTIL.CLAW.MOTOR.FOUR: %.1f",
-                CLAW.ONE,
-                CLAW.TWO,
-                CLAW.THREE,
-                CLAW.FOUR
-        );
+        if(ACTIVE) {
+            return String.format(
+                    "   > Bottom1: %.1f\n   > Bottom2: %.1f\n   > Middle: %.1f\n   > UTIL.CLAW.MOTOR.FOUR: %.1f",
+                    CLAW.ONE,
+                    CLAW.TWO,
+                    CLAW.THREE,
+                    CLAW.FOUR
+            );
+        } else {
+            return "  > CLAW DISABLED";
+        }
     }
 }

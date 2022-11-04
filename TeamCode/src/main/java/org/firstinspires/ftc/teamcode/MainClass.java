@@ -6,14 +6,14 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.util.IMode;
 
-@TeleOp(name = "PowerPlay 2022-2023")
-public class MainClass<T extends IMode> extends LinearOpMode {
+@TeleOp(name = OpModePOWERPLAY.NAME)
+public class MainClass extends LinearOpMode {
     public static Telemetry TELEMETRY;
     public static HardwareMap HMAP;
     public static Gamepad G1;
     public static Gamepad G2;
+
 
     @Override
     public void runOpMode(){
