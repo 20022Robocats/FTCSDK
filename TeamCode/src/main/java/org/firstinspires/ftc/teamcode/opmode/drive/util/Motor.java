@@ -1,29 +1,36 @@
-package org.firstinspires.ftc.teamcode.multipartclaw.util;
+package org.firstinspires.ftc.teamcode.opmode.drive.util;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-
 public class Motor {
-    private DcMotor MOTOR;
-    private Gear GEAR;
+    private final DcMotor MOTOR;// DcMotor It will interact With
+    private Gear GEAR;// Current motor gear
 
+    /**
+     * Creates a new Motor Instance
+     */
     public Motor(DcMotor motor) {
         this.MOTOR = motor;
         this.GEAR = Gear.MED;
     }
 
-    public void setTargetPosition(int num){
-        this.MOTOR.setTargetPosition(num);
-    }
-
+    /**
+     * Sets the power of the current motor
+     */
     public void setPower(double speed) {
         this.MOTOR.setPower(speed * this.GEAR.speed());
     }
 
+    /**
+     * Returns current gear
+     */
     public double gear() {
         return this.GEAR.speed();
     }
 
+    /**
+     * Shifts the gear down
+     */
     public void shift_down() {
         if(this.GEAR.equals(Gear.FAST)){
             this.GEAR = Gear.MED;
@@ -32,6 +39,9 @@ public class Motor {
         }
     }
 
+    /**
+     * Shifts the gear up
+     */
     public void shift_up() {
         if(this.GEAR.equals(Gear.SLOW)){
             this.GEAR = Gear.MED;
