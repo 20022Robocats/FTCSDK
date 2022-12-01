@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.schemes;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.interfaces.IScheme;
+import org.firstinspires.ftc.teamcode.utils.IScheme;
 import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
 import org.firstinspires.ftc.teamcode.opmode.arm.Claw;
 import org.firstinspires.ftc.teamcode.MainClass;
@@ -12,10 +12,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.Locale;
 
 public class MatScheme extends IScheme {
-    public Telemetry telemetry = MainClass.TELEMETRY;
-    public ElapsedTime runtime = new ElapsedTime();
-    public Gamepad g1;
-    public Gamepad g2;
+    public final Telemetry telemetry = MainClass.TELEMETRY;
+    public final ElapsedTime runtime = new ElapsedTime();
+    public final Gamepad g1;
+    public final Gamepad g2;
 
     private final Drive DRIVE;
     private final Claw CLAW;

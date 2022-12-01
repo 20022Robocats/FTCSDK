@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.opmode.arm.util;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.opmode.drive.util.Gear;
-
 public class Motor {
     private final DcMotor MOTOR;// DcMotor It will interact With
 

@@ -10,11 +10,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import java.util.Locale;
 
 public class Drive {
-    public static HardwareMap hardwareMap = MainClass.HMAP;
-    public Motor motor0;
-    public Motor motor1;
-    public Motor motor2;
-    public Motor motor3;
+    public static final HardwareMap hardwareMap = MainClass.HMAP;
+    public final Motor motor0;
+    public final Motor motor1;
+    public final Motor motor2;
+    public final Motor motor3;
     public double FR = 0;// 1
     public double FL = 0;// 0
     public double BR = 0;// 2

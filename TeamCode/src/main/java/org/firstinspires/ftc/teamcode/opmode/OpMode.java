@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.opmode.arm.Claw;
 public class OpMode {
     public HardwareMap hardwareMap;// Hardware Map
     public Telemetry telemetry;// telemetry
-    public Drive DRIVE;// Drive
+    public final Drive DRIVE;// Drive
     public Claw CLAW;// Claw & Arm
 
     /**

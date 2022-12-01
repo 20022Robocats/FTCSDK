@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.interfaces;
+package org.firstinspires.ftc.teamcode.utils;
 
 import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
 import org.firstinspires.ftc.teamcode.opmode.arm.Claw;
@@ -14,6 +14,7 @@ public abstract class IScheme {
         return new Gamepad[]{MainClass.G1, MainClass.G2};
     }
 
+    @SuppressWarnings("unused")
     public IScheme(Drive drive, Claw claw) {}
 
     /**

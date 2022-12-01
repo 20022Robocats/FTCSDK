@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import org.firstinspires.ftc.teamcode.utils.SkyStoneUtils.CameraUtils;
 import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -8,10 +9,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @SuppressWarnings("unused")
 @Autonomous(name = Common.OpModeName + " - Autonomous")
 public class AutoClass extends LinearOpMode {
+    public CameraUtils cam;
     private Drive DRIVE;
 
     private void preInit() {
         this.telemetry.addLine(Common.getTeam());
+        cam = new CameraUtils(this.hardwareMap);
         this.telemetry.update();
     }
 

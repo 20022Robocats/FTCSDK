@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Common;
 import java.util.Locale;
 
 public class Claw {
-    public HardwareMap hardwareMap = MainClass.HMAP;// Hardware Map
+    public final HardwareMap hardwareMap = MainClass.HMAP;// Hardware Map
     public boolean ACTIVE = true;// Useful when expansion hub not plugged in
     public double ONE = 0;// Speed
     private Motor motor0;// Interaction Motor

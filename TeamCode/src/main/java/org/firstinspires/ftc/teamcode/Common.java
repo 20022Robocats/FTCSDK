@@ -9,22 +9,22 @@ public class Common {
     };// Everyone from the Team
 
     public static final class MotorPin {
-        public static String FR_NAME = "motor0";
-        public static String FL_NAME = "motor1";
-        public static String BR_NAME = "motor2";
-        public static String BL_NAME = "motor3";
+        public static final String FR_NAME = "motor0";
+        public static final  String FL_NAME = "motor1";
+        public static final  String BR_NAME = "motor2";
+        public static final  String BL_NAME = "motor3";
 
-        public static String R_SERVO = "servo1";
-        public static String L_SERVO = "servo0";
+        public static final  String R_SERVO = "servo1";
+        public static final  String L_SERVO = "servo0";
 
-        public static String ARM_NAME = "arm0";
+        public static final  String ARM_NAME = "arm0";
 
         // Default Rotation
-        public static double FR = -1;
-        public static double FL = -1;
-        public static double BR = 1;
-        public static double BL = -1;
-        public static double ARM = -1;
+        public static final  double FR = -1;
+        public static final  double FL = -1;
+        public static final  double BR = 1;
+        public static final  double BL = -1;
+        public static final  double ARM = -1;
     }
 
     public static String getTeam() {
