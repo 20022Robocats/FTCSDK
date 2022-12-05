@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmode.drive.util;
+package net.hypernite.robocats.opmode.drive.util;
 
 public enum Gear {
     FAST(0.75),// Fastest Gear

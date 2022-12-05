@@ -88,4 +88,4 @@ lint/reports/
 
 # Misc
 *.hprof
-TeamCode/src/main/java/org/firstinspires/ftc/teamcode/VuforiaKey.java
+TeamCode/src/main/java/net/hypernite/robocats/VuforiaKey.java

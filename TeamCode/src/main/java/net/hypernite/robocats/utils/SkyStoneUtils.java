@@ -1,23 +1,26 @@
-package org.firstinspires.ftc.teamcode.utils;
+package net.hypernite.robocats.utils;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.acmerobotics.dashboard.FtcDashboard;
 
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.teamcode.VuforiaKey;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvPipeline;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.core.Scalar;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+
+import net.hypernite.robocats.VuforiaKey;
 
 public class SkyStoneUtils {
+    public static boolean ACTIVE = true;
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
         /*
          * An enum to define the skystone position
@@ -31,8 +34,8 @@ public class SkyStoneUtils {
         /*
          * Some color constants
          */
-        static final Scalar BLUE = new Scalar(0, 0, 255);
-        static final Scalar GREEN = new Scalar(0, 255, 0);
+        static final Scalar BLACK = new Scalar(0, 0, 0);
+        static final Scalar WHITE = new Scalar(255, 255, 255);
 
         /*
          * The core values which define the location and size of the sample regions
@@ -161,7 +164,7 @@ public class SkyStoneUtils {
                     input, // Buffer to draw on
                     region1_pointA, // First point which defines the rectangle
                     region1_pointB, // Second point which defines the rectangle
-                    BLUE, // The color the rectangle is drawn in
+                    BLACK, // The color the rectangle is drawn in
                     2
             ); // Thickness of the rectangle lines
 
@@ -173,7 +176,7 @@ public class SkyStoneUtils {
                     input, // Buffer to draw on
                     region2_pointA, // First point which defines the rectangle
                     region2_pointB, // Second point which defines the rectangle
-                    BLUE, // The color the rectangle is drawn in
+                    BLACK, // The color the rectangle is drawn in
                     2
             ); // Thickness of the rectangle lines
 
@@ -185,7 +188,7 @@ public class SkyStoneUtils {
                     input, // Buffer to draw on
                     region3_pointA, // First point which defines the rectangle
                     region3_pointB, // Second point which defines the rectangle
-                    BLUE, // The color the rectangle is drawn in
+                    BLACK, // The color the rectangle is drawn in
                     2
             ); // Thickness of the rectangle lines
 
@@ -211,7 +214,7 @@ public class SkyStoneUtils {
                         input, // Buffer to draw on
                         region1_pointA, // First point which defines the rectangle
                         region1_pointB, // Second point which defines the rectangle
-                        GREEN, // The color the rectangle is drawn in
+                        WHITE, // The color the rectangle is drawn in
                         -1); // Negative thickness means solid fill
             } else if(max == avg2) {
                 position = SkystonePosition.CENTER; // Record our analysis
@@ -224,7 +227,7 @@ public class SkyStoneUtils {
                         input, // Buffer to draw on
                         region2_pointA, // First point which defines the rectangle
                         region2_pointB, // Second point which defines the rectangle
-                        GREEN, // The color the rectangle is drawn in
+                        WHITE, // The color the rectangle is drawn in
                         -1); // Negative thickness means solid fill
             } else {
                 position = SkystonePosition.RIGHT; // Record our analysis
@@ -237,7 +240,7 @@ public class SkyStoneUtils {
                         input, // Buffer to draw on
                         region3_pointA, // First point which defines the rectangle
                         region3_pointB, // Second point which defines the rectangle
-                        GREEN, // The color the rectangle is drawn in
+                        WHITE, // The color the rectangle is drawn in
                         -1
                 ); // Negative thickness means solid fill
             }
@@ -258,42 +261,53 @@ public class SkyStoneUtils {
         }
 
         public int analyze() {
-            switch(this.getAnalysis()){
-                case LEFT: {
-                    return 0;
-                }
-                case RIGHT: {
-                    return 2;
-                }
-                default: {
-                    return 1;
+            if(SkyStoneUtils.ACTIVE) {
+                switch(this.getAnalysis()){
+                    case LEFT: {
+                        return 0;
+                    }
+                    case RIGHT: {
+                        return 2;
+                    }
+                    default: {
+                        return 1;
+                    }
                 }
             }
+            return 3;
         }
     }
 
     public static class CameraUtils {
-        public final SkystoneDeterminationPipeline.SkystonePosition snapshotAnalysis;
-        public final SkystoneDeterminationPipeline pipeline;
-        public final OpenCvCamera vuforiaPassthroughCam;
-        public final VuforiaLocalizer vuforia;
+        public SkystoneDeterminationPipeline.SkystonePosition snapshotAnalysis;
+        public SkystoneDeterminationPipeline pipeline;
+        public OpenCvCamera vuforiaPassthroughCam;
+        public VuforiaLocalizer vuforia;
 
 
         public CameraUtils(HardwareMap hardwareMap){
-            snapshotAnalysis = SkystoneDeterminationPipeline.SkystonePosition.LEFT; // default
-            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-            int[] viewportContainerIds = OpenCvCameraFactory.getInstance().splitLayoutForMultipleViewports(cameraMonitorViewId, 2, OpenCvCameraFactory.ViewportSplitMethod.VERTICALLY);
-            VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(viewportContainerIds[0]);
-            parameters.vuforiaLicenseKey = VuforiaKey.KEY;
-            parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-            parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
-            vuforia = ClassFactory.getInstance().createVuforia(parameters);
-            vuforiaPassthroughCam = OpenCvCameraFactory.getInstance().createVuforiaPassthrough(vuforia, parameters, viewportContainerIds[1]);
-            pipeline = new SkystoneDeterminationPipeline();
-            vuforiaPassthroughCam.setPipeline(pipeline);
-            FtcDashboard.getInstance().startCameraStream(vuforia,60);
+            try{
+                SkyStoneUtils.ACTIVE = true;
+                snapshotAnalysis = SkystoneDeterminationPipeline.SkystonePosition.LEFT; // default
+                int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+                int[] viewportContainerIds = OpenCvCameraFactory.getInstance().splitLayoutForMultipleViewports(cameraMonitorViewId, 2, OpenCvCameraFactory.ViewportSplitMethod.VERTICALLY);
+                VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(viewportContainerIds[0]);
+                parameters.vuforiaLicenseKey = VuforiaKey.KEY;
+                parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+                parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+                vuforia = ClassFactory.getInstance().createVuforia(parameters);
+                vuforiaPassthroughCam = OpenCvCameraFactory.getInstance().createVuforiaPassthrough(vuforia, parameters, viewportContainerIds[1]);
+                pipeline = new SkystoneDeterminationPipeline();
+                vuforiaPassthroughCam.setPipeline(pipeline);
+                FtcDashboard.getInstance().startCameraStream(vuforia,60);
+            }catch(Exception e) {
+                SkyStoneUtils.ACTIVE = false;
+            }
         }
 
-        public int snapshot() { return this.pipeline.analyze(); }
+        public int snapshot() {
+            if(SkyStoneUtils.ACTIVE) return this.pipeline.analyze();
+            return 3;
+        }
     }
 }

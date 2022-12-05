@@ -1,96 +1,80 @@
 package org.firstinspires.ftc.teamcode.schemes;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.utils.IScheme;
-import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
-import org.firstinspires.ftc.teamcode.opmode.arm.Claw;
-import org.firstinspires.ftc.teamcode.MainClass;
-
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import java.util.Locale;
+import net.hypernite.robocats.utils.IScheme;
 
 public class MatScheme extends IScheme {
-    public final Telemetry telemetry = MainClass.TELEMETRY;
     public final ElapsedTime runtime = new ElapsedTime();
-    public final Gamepad g1;
-    public final Gamepad g2;
 
-    private final Drive DRIVE;
-    private final Claw CLAW;
-
-
-    public MatScheme(Drive drive, Claw claw){
-        super(drive,claw);
-        Gamepad[] gamepads = IScheme.init();
-        this.g1 = gamepads[0];
-        this.g2 = gamepads[1];
-        this.DRIVE = drive;
-        this.CLAW = claw;
+    public MatScheme(){
+        super();
     }
 
     @Override
     public void control() {
-        drive(DRIVE,g1);
-        claw(CLAW,g2);
+        drive();
+        claw();
         telemetry();
     }
 
-    private void drive(Drive DRIVE, Gamepad gamepad) {
-        DRIVE.FR = gamepad.left_stick_y;
-        DRIVE.FL = gamepad.left_stick_y;
-        DRIVE.BR = gamepad.left_stick_y ;
-        DRIVE.BL = gamepad.left_stick_y;
-        if(gamepad.left_trigger!=0){
+    private void drive() {
+        DRIVE.FR = 0;
+        DRIVE.FL = 0;
+        DRIVE.BR = 0;
+        DRIVE.BL = 0;
+        if(G1.left_trigger!=0){
             DRIVE.shift("down");
-        } else if(gamepad.right_trigger!=0){
+        } else if(G1.right_trigger!=0){
             DRIVE.shift("up");
         }
-        if( Math.abs(gamepad.left_stick_x) > Math.abs(gamepad.left_stick_y) ){
-            DRIVE.FR = gamepad.left_stick_x;
-            DRIVE.FL = -gamepad.left_stick_x;
-            DRIVE.BR = -gamepad.left_stick_x;
-            DRIVE.BL = gamepad.left_stick_x;
+        if(Math.abs(G1.left_stick_y) > 0.1) {
+            DRIVE.FR = G1.left_stick_y;
+            DRIVE.FL = G1.left_stick_y;
+            DRIVE.BR = G1.left_stick_y;
+            DRIVE.BL = G1.left_stick_y;
         }
-        if( gamepad.right_stick_x != 0 ){
-            DRIVE.FR = gamepad.right_stick_x;
-            DRIVE.FL = -gamepad.right_stick_x;
-            DRIVE.BR = gamepad.right_stick_x;
-            DRIVE.BL = -gamepad.right_stick_x;
+        if( Math.abs(G1.left_stick_x) > Math.abs(G1.left_stick_y) ){
+            DRIVE.FR = G1.left_stick_x;
+            DRIVE.FL = -G1.left_stick_x;
+            DRIVE.BR = -G1.left_stick_x;
+            DRIVE.BL = G1.left_stick_x;
+        }
+        if( G1.right_stick_x != 0 ){
+            DRIVE.FR = G1.right_stick_x;
+            DRIVE.FL = -G1.right_stick_x;
+            DRIVE.BL = -G1.right_stick_x;
+            DRIVE.BR = G1.right_stick_x;
         }
         DRIVE.update();
     }
-
-    private void claw(Claw CLAW, Gamepad gamepad) {
+    private void claw() {
         if(CLAW.ACTIVE){
-            if(Math.abs(gamepad.right_stick_y)>0.4) {
-                CLAW.ONE = gamepad.right_stick_y;
+            if(Math.abs(G2.right_stick_y)>0.4) {
+                CLAW.ONE = G2.right_stick_y;
             } else {
                 CLAW.ONE = 0;
             }
-            if(gamepad.left_trigger!=0){
+            if(G2.left_trigger!=0){
                 CLAW.s0.setPosition(0.35);
                 CLAW.s1.setPosition(0.47);
-            } else if(gamepad.right_trigger!=0) {
+            } else if(G2.right_trigger!=0) {
                 CLAW.s0.setPosition(0.55);
                 CLAW.s1.setPosition(0.25);
             }
             CLAW.update();
         }
     }
-
     private void telemetry() {
-        String status_data = String.format(Locale.ENGLISH,
+        String status_data = String.format(java.util.Locale.ENGLISH,
             "   > Time: %.0f",
             runtime.time()
         );
-        telemetry.addLine("Status:");
-        telemetry.addLine(status_data);
-        telemetry.addLine("Drive:");
-        telemetry.addLine(DRIVE.telemetry());
-        telemetry.addLine("Claw:");
-        telemetry.addLine(CLAW.telemetry());
-        telemetry.update();
+        TELEMETRY.addLine("Status:");
+        TELEMETRY.addLine(status_data);
+        TELEMETRY.addLine("Drive:");
+        TELEMETRY.addLine(DRIVE.telemetry());
+        TELEMETRY.addLine("Claw:");
+        TELEMETRY.addLine(CLAW.telemetry());
+        TELEMETRY.update();
     }
 }

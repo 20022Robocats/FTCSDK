@@ -1,13 +1,15 @@
-package org.firstinspires.ftc.teamcode;
+package net.hypernite.robocats;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.utils.SkyStoneUtils.CameraUtils;
+import net.hypernite.robocats.utils.SkyStoneUtils.CameraUtils;
+
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvCamera;
 
 @TeleOp
+@com.qualcomm.robotcore.eventloop.opmode.Disabled
 public class FieldNav extends LinearOpMode {
     CameraUtils cam = null;
 
@@ -51,12 +53,10 @@ public class FieldNav extends LinearOpMode {
     private void left() {
 
     }
-
     @SuppressWarnings("EmptyMethod")
     private void right() {
 
     }
-
     @SuppressWarnings("EmptyMethod")
     private void center() {
 

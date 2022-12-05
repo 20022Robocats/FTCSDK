@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import org.firstinspires.ftc.teamcode.utils.SkyStoneUtils.CameraUtils;
-import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
+import net.hypernite.robocats.utils.SkyStoneUtils.CameraUtils;
+import net.hypernite.robocats.opmode.drive.Drive;
+import net.hypernite.robocats.utils.CommonUtils;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -13,7 +14,7 @@ public class AutoClass extends LinearOpMode {
     private Drive DRIVE;
 
     private void preInit() {
-        this.telemetry.addLine(Common.getTeam());
+        this.telemetry.addLine(CommonUtils.getTeam());
         cam = new CameraUtils(this.hardwareMap);
         this.telemetry.update();
     }
@@ -29,10 +30,10 @@ public class AutoClass extends LinearOpMode {
         postInit();
         if(opModeIsActive()){
 
-            DRIVE.FR = -0.5 * Common.MotorPin.FR;
-            DRIVE.FL = -0.5 * Common.MotorPin.FL;
-            DRIVE.BR = -0.5 * Common.MotorPin.BR;
-            DRIVE.BL = -0.5 * Common.MotorPin.BL;
+            DRIVE.FR = -0.5 * Common.Motor.FR;
+            DRIVE.FL = -0.5 * Common.Motor.FL;
+            DRIVE.BR = -0.5 * Common.Motor.BR;
+            DRIVE.BL = -0.5 * Common.Motor.BL;
 
             DRIVE.update();
 
