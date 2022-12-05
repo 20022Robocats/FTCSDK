@@ -22,9 +22,9 @@ public class MatScheme extends IScheme {
         DRIVE.FL = 0;
         DRIVE.BR = 0;
         DRIVE.BL = 0;
-        if(G1.left_trigger!=0){
+        if(G1.left_trigger != 0) {
             DRIVE.shift("down");
-        } else if(G1.right_trigger!=0){
+        } else if(G1.right_trigger != 0) {
             DRIVE.shift("up");
         }
         if(Math.abs(G1.left_stick_y) > 0.1) {
@@ -33,13 +33,13 @@ public class MatScheme extends IScheme {
             DRIVE.BR = G1.left_stick_y;
             DRIVE.BL = G1.left_stick_y;
         }
-        if( Math.abs(G1.left_stick_x) > Math.abs(G1.left_stick_y) ){
+        if(Math.abs(G1.left_stick_x) > Math.abs(G1.left_stick_y)) {
             DRIVE.FR = G1.left_stick_x;
             DRIVE.FL = -G1.left_stick_x;
             DRIVE.BR = -G1.left_stick_x;
             DRIVE.BL = G1.left_stick_x;
         }
-        if( G1.right_stick_x != 0 ){
+        if(G1.right_stick_x != 0) {
             DRIVE.FR = G1.right_stick_x;
             DRIVE.FL = -G1.right_stick_x;
             DRIVE.BL = -G1.right_stick_x;
@@ -48,16 +48,16 @@ public class MatScheme extends IScheme {
         DRIVE.update();
     }
     private void claw() {
-        if(CLAW.ACTIVE){
-            if(Math.abs(G2.right_stick_y)>0.4) {
+        if(CLAW.ACTIVE) {
+            if(Math.abs(G2.right_stick_y) > 0.4) {
                 CLAW.ONE = G2.right_stick_y;
             } else {
                 CLAW.ONE = 0;
             }
-            if(G2.left_trigger!=0){
+            if(G2.left_trigger != 0) {
                 CLAW.s0.setPosition(0.35);
                 CLAW.s1.setPosition(0.47);
-            } else if(G2.right_trigger!=0) {
+            } else if(G2.right_trigger != 0) {
                 CLAW.s0.setPosition(0.55);
                 CLAW.s1.setPosition(0.25);
             }

@@ -5,6 +5,7 @@ import net.hypernite.robocats.opmode.drive.Drive;
 import net.hypernite.robocats.opmode.arm.Claw;
 import org.firstinspires.ftc.teamcode.Common;
 
+@SuppressWarnings("all")
 public class SchemeLoader<S extends IScheme> {
     public static Drive DRIVE;
     public static Claw CLAW;
@@ -26,8 +27,8 @@ public class SchemeLoader<S extends IScheme> {
     private static final Scheme[] SCHEMES = Common.Schemes;
 
     public static class Scheme<S extends IScheme> {
-        public String name;
-        public S SCHEME;
+        public final String name;
+        public final S SCHEME;
         public Scheme(String name, S SCHEME) {
             this.SCHEME = SCHEME;
             this.name = name;

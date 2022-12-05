@@ -23,11 +23,11 @@ public class ExampleScheme extends IScheme {
     public void control() {
         TELEMETRY.addLine("Drive:");
         TELEMETRY.addLine(
-                DRIVE.telemetry()
+            DRIVE.telemetry()
         );
         TELEMETRY.addLine("Claw:");
         TELEMETRY.addLine(
-                CLAW.telemetry()
+            CLAW.telemetry()
         );
         TELEMETRY.update();
     }

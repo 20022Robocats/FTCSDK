@@ -279,7 +279,6 @@ public class SkyStoneUtils {
     }
 
     public static class CameraUtils {
-        public SkystoneDeterminationPipeline.SkystonePosition snapshotAnalysis;
         public SkystoneDeterminationPipeline pipeline;
         public OpenCvCamera vuforiaPassthroughCam;
         public VuforiaLocalizer vuforia;
@@ -288,7 +287,6 @@ public class SkyStoneUtils {
         public CameraUtils(HardwareMap hardwareMap){
             try{
                 SkyStoneUtils.ACTIVE = true;
-                snapshotAnalysis = SkystoneDeterminationPipeline.SkystonePosition.LEFT; // default
                 int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
                 int[] viewportContainerIds = OpenCvCameraFactory.getInstance().splitLayoutForMultipleViewports(cameraMonitorViewId, 2, OpenCvCameraFactory.ViewportSplitMethod.VERTICALLY);
                 VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(viewportContainerIds[0]);
