@@ -2,12 +2,12 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import net.hypernite.robocats.Loader;
+import net.hypernite.robocats.utils.IScheme;
+import net.hypernite.robocats.utils.Loader;
 
 @SuppressWarnings("all")
 @TeleOp(name = Common.OpModeName + " - TeleOp")
-public class MainClass extends LinearOpMode {
-    public Loader Scheme;// Controller Scheme
+public class MainClass<S extends IScheme> extends LinearOpMode {
 
     /**
      * Entry point of the program,
@@ -15,22 +15,11 @@ public class MainClass extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
-        initialize();
+        Loader loader = new Loader(telemetry, hardwareMap, gamepad1, gamepad2);
+        waitForStart();
+        S Scheme = (S) loader.load("Mat");
         while(opModeIsActive()) {
             Scheme.control();
         }
-    }
-
-    /**
-     * Does a few things:
-     * - Loads Properties
-     * - Sets up OpMode
-     * - Loads OpMode Scheme
-     * - Print Scheme to telemetry
-     * - Waits for start to continue execution
-     */
-    private void initialize() {
-        Scheme = Loader.load(telemetry, hardwareMap, gamepad1, gamepad2);
-        waitForStart();
     }
 }

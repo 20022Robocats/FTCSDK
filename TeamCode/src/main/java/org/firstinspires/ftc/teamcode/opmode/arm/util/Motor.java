@@ -1,4 +1,4 @@
-package net.hypernite.robocats.opmode.arm.util;
+package org.firstinspires.ftc.teamcode.opmode.arm.util;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 

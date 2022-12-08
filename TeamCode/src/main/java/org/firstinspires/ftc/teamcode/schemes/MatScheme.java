@@ -6,9 +6,7 @@ import net.hypernite.robocats.utils.IScheme;
 public class MatScheme extends IScheme {
     public final ElapsedTime runtime = new ElapsedTime();
 
-    public MatScheme(){
-        super();
-    }
+    public MatScheme(){ super(); }
 
     @Override
     public void control() {

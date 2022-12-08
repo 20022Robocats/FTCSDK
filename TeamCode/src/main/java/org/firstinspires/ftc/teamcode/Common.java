@@ -14,19 +14,12 @@ public final class Common {
 
     // Default Motor Rotations
     public static final class Motor {
-        public static final double FR = -1;// Front Right
-        public static final double FL = 1;// Front Left
+        public static final double FR = 1;// Front Right
+        public static final double FL = -1;// Front Left
         public static final double BR = 1;// Back Right
         public static final double BL = -1;// Back Left
         public static final double ARM = -1;// Arm Motor
     }
 
     public static final String SchemeInUse = "Mat";
-
-    public static final Scheme[] Schemes = {
-        new Scheme(
-            "Mat",
-            new MatScheme()
-        )
-    };
 }

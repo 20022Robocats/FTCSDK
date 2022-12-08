@@ -1,22 +1,22 @@
 package net.hypernite.robocats.utils;
 
 import org.firstinspires.ftc.teamcode.schemes.ExampleScheme;
-import net.hypernite.robocats.opmode.drive.Drive;
-import net.hypernite.robocats.opmode.arm.Claw;
-import org.firstinspires.ftc.teamcode.Common;
+import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
+import org.firstinspires.ftc.teamcode.opmode.arm.Claw;
+import org.firstinspires.ftc.teamcode.schemes.*;
 
 @SuppressWarnings("all")
 public class SchemeLoader<S extends IScheme> {
-    public static Drive DRIVE;
-    public static Claw CLAW;
+    public Drive DRIVE;
+    public Claw CLAW;
 
     public SchemeLoader(Drive drive, Claw claw) {
-        SchemeLoader.DRIVE = drive;
-        SchemeLoader.CLAW = claw;
+        this.DRIVE = drive;
+        this.CLAW = claw;
     }
 
     public S loadScheme(String name) {
-        for(Scheme<S> Scheme : SchemeLoader.SCHEMES) {
+        for(Scheme<S> Scheme : this.SCHEMES) {
             if(Scheme.name.equals(name)){
                 return Scheme.SCHEME;
             }
@@ -24,7 +24,12 @@ public class SchemeLoader<S extends IScheme> {
         return (S) new ExampleScheme();
     }
 
-    private static final Scheme[] SCHEMES = Common.Schemes;
+    private final Scheme[] SCHEMES = {
+        new Scheme(
+            "Mat",
+            new MatScheme()
+        )
+    };
 
     public static class Scheme<S extends IScheme> {
         public final String name;

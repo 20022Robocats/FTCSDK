@@ -1,16 +1,12 @@
-package net.hypernite.robocats.opmode.drive;
+package org.firstinspires.ftc.teamcode.opmode.drive;
 
-import net.hypernite.robocats.opmode.drive.util.Motor;
+import org.firstinspires.ftc.teamcode.opmode.drive.util.Motor;
 import org.firstinspires.ftc.teamcode.Common;
-import net.hypernite.robocats.Loader;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import java.util.Locale;
-
 public class Drive {
-    public static final HardwareMap hardwareMap = Loader.HMAP;
     public final Motor motor0;
     public final Motor motor1;
     public final Motor motor2;
@@ -23,7 +19,7 @@ public class Drive {
     /**
      * Crates a new Drive Instance
      */
-    public Drive() {
+    public Drive(HardwareMap hardwareMap) {
         DcMotor fr = hardwareMap.get(DcMotor.class, "motor0");
         DcMotor fl = hardwareMap.get(DcMotor.class, "motor1");
         DcMotor br = hardwareMap.get(DcMotor.class, "motor2");
@@ -48,7 +44,7 @@ public class Drive {
      * returns telemetry String
      */
     public String telemetry() {
-        return String.format(Locale.ENGLISH,
+        return String.format(java.util.Locale.ENGLISH,
             "   > Gear: %.1f\n   > FR: %.1f\n   > FL: %.1f\n   > BR: %.1f\n   > BL: %.1f",
             motor0.gear(),
             FR * Common.Motor.FR,

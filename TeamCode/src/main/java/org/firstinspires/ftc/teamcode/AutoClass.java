@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import net.hypernite.robocats.utils.SkyStoneUtils.CameraUtils;
-import net.hypernite.robocats.opmode.drive.Drive;
+import org.firstinspires.ftc.teamcode.opmode.drive.Drive;
 import net.hypernite.robocats.utils.CommonUtils;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -20,7 +20,7 @@ public class AutoClass extends LinearOpMode {
     }
 
     private void postInit() {
-        DRIVE = new Drive();
+        DRIVE = new Drive(this.hardwareMap);
     }
 
     @Override
