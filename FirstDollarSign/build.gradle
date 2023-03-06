@@ -8,19 +8,10 @@
 // please think carefully as to whether such customizations are really necessary
 // before doing so.
 
-
-// Custom definitions may go here
-
-// Include common definitions from above.
-apply from: '../build.common.gradle'
+apply plugin: 'com.android.library'
 apply from: '../build.dependencies.gradle'
 
 android {
-    namespace = 'org.firstinspires.ftc.teamcode'
-}
-
-dependencies {
-    implementation project(':FirstDollarSign')
-    implementation project(':FtcRobotController')
-    annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
+    namespace = 'net.hypernite.projects'
+    compileSdkVersion 29
 }
