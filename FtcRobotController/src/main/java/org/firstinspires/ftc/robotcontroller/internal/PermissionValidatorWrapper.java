@@ -27,7 +27,7 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package robotcontroller;
+package org.firstinspires.ftc.robotcontroller.internal;
 
 import android.Manifest;
 import android.os.Bundle;
@@ -40,7 +40,6 @@ import org.firstinspires.ftc.robotcore.internal.system.PermissionValidatorActivi
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("all")
 public class PermissionValidatorWrapper extends PermissionValidatorActivity {
 
     private final String TAG = "PermissionValidatorWrapper";

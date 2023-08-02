@@ -36,7 +36,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               xmlns:style="http://schemas.android.com/apk/res-auto"
-              tools:context="robotcontroller.FtcRobotControllerActivity"
+              tools:context="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
               android:focusable="true"
               android:id="@+id/entire_screen"
               android:orientation="vertical">
@@ -54,8 +54,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       android:layout_width="wrap_content"
       android:layout_height="fill_parent"
       android:adjustViewBounds="true"
-      android:layout_margin="1dp"
-        tools:ignore="ContentDescription" />
+      android:layout_margin="1dp"/>
 
     <TextView
       android:id="@+id/textDeviceName"
@@ -79,8 +78,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       android:layout_alignParentEnd="true"
       android:layout_centerInParent="true"
       android:layout_centerHorizontal="true"
-      android:layout_margin="10dp"
-        tools:ignore="ContentDescription" />
+      android:layout_margin="10dp"/>
 
   </RelativeLayout>
   <!-- end of black bar -->
@@ -141,13 +139,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            />
-        <FrameLayout
-            android:id="@+id/tfodMonitorViewId"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
             />
 
         </LinearLayout>

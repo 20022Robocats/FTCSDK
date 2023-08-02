@@ -1,4 +1,3 @@
 # Ro**BOCA**ts
 
-## [V1 Code](./v1/)
-## [V2 Code](./v2/)
+## 2023-2024 Season is coming up! So yeah... waiting.
