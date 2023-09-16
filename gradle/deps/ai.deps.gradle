@@ -1,0 +1,7 @@
+dependencies {
+    implementation "org.firstinspires.ftc:Tfod:${project.ftc_sdk_version}"
+    implementation "org.firstinspires.ftc:Vision:${project.ftc_sdk_version}"
+    implementation 'org.firstinspires.ftc:gameAssets-CenterStage:1.0.0'
+    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.4.3'
+    runtimeOnly 'org.tensorflow:tensorflow-lite:2.12.0'
+}

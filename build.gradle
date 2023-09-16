@@ -22,6 +22,9 @@ allprojects {
         mavenCentral()
         google()
     }
+    ext {
+        PRDIR = "$projectDir/"
+    }
 }
 
 repositories {

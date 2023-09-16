@@ -1,4 +1,9 @@
 repositories {
+    // Atomic Maven
+    maven {
+        name = 'Atomic'
+        url = 'https://gh.matveit.dev/pkgs'
+    }
     // Needed for HyperFTC
     maven {
         url = 'https://hyperftc.github.io/maven'
@@ -7,23 +12,19 @@ repositories {
     google() // Needed for androidx
 }
 
-dependencies {
-    implementation 'org.firstinspires.ftc:Inspection:8.2.0'
-    implementation 'org.firstinspires.ftc:Blocks:8.2.0'
-    implementation 'org.firstinspires.ftc:Tfod:8.2.0'
-    implementation 'org.firstinspires.ftc:RobotCore:8.2.0'
-    implementation 'org.firstinspires.ftc:RobotServer:8.2.0'
-    implementation 'org.firstinspires.ftc:OnBotJava:8.2.0'
-    implementation 'org.firstinspires.ftc:Hardware:8.2.0'
-    implementation 'org.firstinspires.ftc:FtcCommon:8.2.0'
-    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.4.3'
-    runtimeOnly 'org.tensorflow:tensorflow-lite:2.12.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'org.firstinspires.ftc:gameAssets-PowerPlay:1.0.0'
-    implementation 'org.firstinspires.ftc:Vision:8.2.0'
+def this_dir = PRDIR + "../gradle/deps/"
+def config_file = this_dir + "deps.properties"
 
-    // External Dependencies
-    implementation 'com.acmerobotics.dashboard:dashboard:0.4.6'
-    implementation 'org.openftc:easyopencv:1.5.2'
+def config = new Properties()
+file(config_file).withInputStream { config.load(it) }
+
+ext.loadDep = { name ->
+    def use_dep = config.getProperty(name, 'false')
+    if (use_dep == 'true') {
+        apply from: this_dir + name + ".deps.gradle"
+    }
 }
 
+loadDep('core')
+loadDep('competition')
+loadDep('ai')

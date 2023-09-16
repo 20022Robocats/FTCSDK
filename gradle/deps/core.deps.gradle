@@ -1,0 +1,9 @@
+dependencies {
+    // Please do not change
+    //noinspection GradleDependency
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    implementation "org.firstinspires.ftc:RobotCore:${project.ftc_sdk_version}"
+    implementation "org.firstinspires.ftc:Hardware:${project.ftc_sdk_version}"
+    implementation "org.firstinspires.ftc:FtcCommon:${project.ftc_sdk_version}"
+}

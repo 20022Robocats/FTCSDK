@@ -1,2 +1,4 @@
 include ':FtcRobotController'
+
+// Change this to your team number (e.g. Team1234)
 include ':TeamCode'

@@ -1,0 +1,6 @@
+dependencies {
+    implementation "org.firstinspires.ftc:Inspection:${project.ftc_sdk_version}"
+    implementation "org.firstinspires.ftc:Blocks:${project.ftc_sdk_version}"
+    implementation "org.firstinspires.ftc:OnBotJava:${project.ftc_sdk_version}"
+    implementation "org.firstinspires.ftc:RobotServer:${project.ftc_sdk_version}"
+}
