@@ -226,8 +226,7 @@ public class FtcRobotControllerActivity extends Activity {
         if (this.eventLoop != null) {
             for (;;) {
                 UsbDevice usbDevice = receivedUsbAttachmentNotifications.poll();
-                if (usbDevice == null)
-                break;
+                if (usbDevice == null) break;
                 this.eventLoop.onUsbDeviceAttached(usbDevice);
             }
         } else {
